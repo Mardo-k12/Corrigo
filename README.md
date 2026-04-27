@@ -147,7 +147,7 @@ Auteur : Mardoché (Mardo-k12)
 
 GitHub : @Mardo-k12
 
-Email : mardoche@upc.edu
+Email : mardocheekanushipi@gmail.com
 
 UPC – Kinshasa, RDC
 
