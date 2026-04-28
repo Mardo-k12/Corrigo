@@ -1,0 +1,82 @@
+Je souhaite créer une application web complète (responsive, utilisable sur mobile comme une app) pour permettre à des enseignants de corriger automatiquement des copies d’examen avec l’intelligence artificielle.
+
+Nom du projet : SmartGrader UPC
+
+Public cible : professeurs d’université (notamment à l’UPC, RDC).
+
+Fonctionnalités principales :
+
+1. **Authentification des enseignants**
+   - Inscription / connexion (email + mot de passe, avec confirmation par email si possible).
+   - Session sécurisée (JWT ou cookie).
+
+2. **Gestion des cours (import de PDF)**
+   - L’enseignant peut importer un fichier PDF (son cours).
+   - Le texte du PDF est extrait et sauvegardé dans la base de données.
+   - Chaque cours a un titre, une description, une matière, un semestre.
+
+3. **Scan de copies d’élèves**
+   - Interface web avec appareil photo (input file ou webcam) pour prendre une photo d’une copie manuscrite.
+   - Possibilité d’importer des images depuis la galerie (ou de les glisser-déposer).
+   - Stockage temporaire de l’image sur le serveur.
+
+4. **Correction automatique par IA**
+   - L’image est envoyée à l’API **Google Cloud Vision** (OCR) pour extraire le texte manuscrit.
+   - Le texte extrait + le contenu du cours sélectionné sont envoyés à l’API **OpenAI GPT-4o** (ou GPT-3.5) avec un prompt qui demande :
+        - une note sur 20 (ou sur 10 selon paramètre)
+        - une appréciation (forces/faiblesses)
+        - une suggestion de correction détaillée.
+   - L’enseignant peut ensuite **modifier manuellement** la note proposée avant validation.
+   - La note finale et le commentaire sont enregistrés.
+
+5. **Génération automatique d’un examen / interrogation**
+   - À partir d’un cours (contenu du PDF), l’enseignant peut demander à l’IA de générer un sujet d’examen (questions QCM, ouvertes, ou mixte).
+   - Paramètres : nombre de questions, niveau de difficulté, type (QCM, développement).
+   - Génération d’un PDF du sujet (avec en-tête, barème).
+
+6. **Gestion des étudiants et des notes**
+   - L’enseignant peut lier des étudiants à chaque cours (import CSV ou saisie manuelle : nom, prénom, matricule).
+   - Pour chaque examen, les notes sont associées aux étudiants.
+   - Calcul automatique de la moyenne du groupe, des crédits (si barème LMD – à paramétrer).
+   - Tableau de bord avec histogramme des notes, taux de réussite.
+
+7. **Relevés de notes et exports**
+   - Génération d’un **relevé de notes individuel au format PDF** (pour chaque étudiant) reprenant ses notes et commentaires.
+   - Export de la liste des notes au format **Excel (xlsx)** pour tout le groupe.
+   - Affichage de l’historique des corrections effectuées.
+
+8. **Interface utilisateur**
+   - Design moderne, sobre, bleu et blanc (couleurs UPC).
+   - Navigation par onglet : Cours, Scanner, Notes/Relevés, Générer examen, Profil.
+   - Responsive (fonctionne sur smartphone, tablette, ordinateur).
+   - Utiliser Tailwind CSS (ou tout framework CSS moderne).
+   - Icônes claires (FontAwesome ou Material Icons).
+
+**Architecture technique souhaitée (full‑stack) :**
+- Frontend : React (avec Vite) ou Next.js (App Router). Typescript optionnel mais préféré.
+- Backend : Node.js + Express (ou NestJS, ou Python + FastAPI – au choix, mais le plus simple à déployer).
+- Base de données : PostgreSQL (ou SQLite pour développement, mais passage à PostgreSQL recommandé pour déploiement).
+- Authentification : JWT stocké en cookie sécurisé HttpOnly.
+- Fichiers stockés : upload des PDF et images dans un dossier local ou sur un service cloud (ex: Supabase Storage ou Cloudinary). Pour la simplicité, on peut utiliser le stockage local pendant le développement.
+- Intégration des API externes :
+    - Google Cloud Vision API (OCR)
+    - OpenAI API (GPT-4o)
+    - (Optionnel) Librairie pour l’extraction de texte des PDF (pdf-parse ou autre).
+- Génération PDF : bibliothèque jsPDF ou PDFKit (côté serveur).
+- Export Excel : sheetjs (xlsx).
+
+**Contraintes importantes :**
+- Le code doit être propre, commenté en français ou en anglais, modulaire.
+- Le projet doit pouvoir être exécuté simplement après un `npm install && npm run dev` (et démarrer le backend séparément si nécessaire).
+- Une documentation courte dans un README.md expliquant comment obtenir les clés API Google Cloud et OpenAI, et comment les configurer (fichier .env).
+- Gérer les erreurs de l’API (quotas, délais) avec des messages utilisateur clairs.
+- Sécuriser l’accès : seuls les enseignants authentifiés peuvent voir leurs cours et leurs notes.
+
+**Livrables attendus (dans le dépôt généré) :**
+- Code source complet (frontend + backend)
+- Base de données préconfigurée (migrations si nécessaire)
+- Fichier .env.example
+- README.md avec instructions d’installation, configuration et déploiement.
+- L’application doit être fonctionnelle en local après avoir configuré les clés API.
+
+**Important :** Je souhaite que l’IA génère l’intégralité du projet en une seule fois, prêt à être téléchargé et exécuté. Je ne veux pas avoir à ajouter manuellement des morceaux manquants. Merci de produire tous les fichiers nécessaires.
