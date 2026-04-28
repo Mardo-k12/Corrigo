@@ -143,7 +143,7 @@ Ce projet est sous licence MIT. Vous êtes libre de l’utiliser, de le modifier
 Voir le fichier LICENSE pour plus de détails.
 
 ✉️ Contact
-Auteur : Mardoché (Mardo-k12)
+Auteur : Mardochée (Mardo-k12)
 
 GitHub : @Mardo-k12
 
