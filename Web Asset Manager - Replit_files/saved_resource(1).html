@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!-- saved from url=(0084)https://0783a5af-b4f7-4da0-ace0-349cdb8c4ca1-00-2ailxr6wesxwy.expo.spock.replit.dev/ -->
+<html lang="en" webcrx=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style id="react-native-stylesheet"></style><script src="./injected.js.download" onerror="parent.postMessage({event:&#39;error&#39;,payload:&#39;script.onerror: Failed to load &#39;+event.target.src},&#39;https://replit.com&#39;)"></script>
+
+
+  
+    
+    <meta httpequiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SmartGrader UPC</title>
+    <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
+    <style id="expo-reset">
+      /* These styles make the body full-height */
+      html,
+      body {
+        height: 100%;
+      }
+      /* These styles disable body scrolling if you are using <ScrollView> */
+      body {
+        overflow: hidden;
+      }
+      /* These styles make the root element full-height */
+      #root {
+        display: flex;
+        height: 100%;
+        flex: 1;
+      }
+    </style>
+  <style id="ReanimatedPredefinedWebAnimationsStyle"></style><style id="ReanimatedCustomWebAnimationsStyle"></style><script src="blob:https://0783a5af-b4f7-4da0-ace0-349cdb8c4ca1-00-2ailxr6wesxwy.expo.spock.replit.dev/b24892e4-0179-4f40-9e7f-65ebd764060a"></script><script type="text/javascript" src="./beacon.js.download"></script><style id="expo-generated-fonts">@font-face{font-family:"Inter_400Regular";src:url("/assets/?unstable_path=.%2F..%2F..%2Fnode_modules%2F.pnpm%2F%40expo-google-fonts%2Binter%400.4.2%2Fnode_modules%2F%40expo-google-fonts%2Finter%2F400Regular/Inter_400Regular.ttf");font-display:auto}@font-face{font-family:"Inter_500Medium";src:url("/assets/?unstable_path=.%2F..%2F..%2Fnode_modules%2F.pnpm%2F%40expo-google-fonts%2Binter%400.4.2%2Fnode_modules%2F%40expo-google-fonts%2Finter%2F500Medium/Inter_500Medium.ttf");font-display:auto}@font-face{font-family:"Inter_600SemiBold";src:url("/assets/?unstable_path=.%2F..%2F..%2Fnode_modules%2F.pnpm%2F%40expo-google-fonts%2Binter%400.4.2%2Fnode_modules%2F%40expo-google-fonts%2Finter%2F600SemiBold/Inter_600SemiBold.ttf");font-display:auto}@font-face{font-family:"Inter_700Bold";src:url("/assets/?unstable_path=.%2F..%2F..%2Fnode_modules%2F.pnpm%2F%40expo-google-fonts%2Binter%400.4.2%2Fnode_modules%2F%40expo-google-fonts%2Finter%2F700Bold/Inter_700Bold.ttf");font-display:auto}@font-face{font-family:"feather";src:url("/assets/?unstable_path=.%2F..%2F..%2Fnode_modules%2F.pnpm%2F%40expo%2Bvector-icons%4015.1.1_expo-font%4014.0.11_expo%4054.0.33_react-native%400.81.5_%40babel%2Bcor_578ada966b57244f0fb5b55de8754f09%2Fnode_modules%2F%40expo%2Fvector-icons%2Fbuild%2Fvendor%2Freact-native-vector-icons%2FFonts/Feather.ttf");font-display:auto}</style></head>
+
+  <body>
+    <!-- Use static rendering with Expo Router to support running without JavaScript. -->
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <!-- The root element for your Expo app. -->
+    <div id="root"><div class="css-view-g5y9jx r-flex-13awgt0"><div class="css-view-g5y9jx r-flex-13awgt0"><div class="css-view-g5y9jx" style="flex: 1 1 0%;"><div style="position: absolute; inset: 0px; pointer-events: none; visibility: hidden;"></div><div class="css-view-g5y9jx r-flex-13awgt0"><div class="css-view-g5y9jx r-flex-13awgt0 r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af" style="background-color: rgb(242, 242, 242); display: flex;"><div class="css-view-g5y9jx r-flex-13awgt0"><div class="css-view-g5y9jx r-flex-13awgt0"><div style="position: absolute; inset: 0px; pointer-events: none; visibility: hidden;"></div><div class="css-view-g5y9jx r-flex-13awgt0" style="flex-direction: column;"><div class="css-view-g5y9jx r-flex-13awgt0 r-overflow-1udh08x"><div class="css-view-g5y9jx r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af" style="z-index: 0;"><div class="css-view-g5y9jx r-flex-13awgt0" style="background-color: rgb(242, 242, 242);"><div class="css-view-g5y9jx r-flex-13awgt0"><div class="css-view-g5y9jx" style="flex: 1 1 0%; background-color: rgb(255, 255, 255);"><div class="css-view-g5y9jx r-WebkitOverflowScrolling-150rngu r-flexDirection-eqz5dr r-flexGrow-16y2uox r-flexShrink-1wbh5a2 r-overflowX-11yh6sk r-overflowY-1rnoaur r-transform-agouwx"><div class="css-view-g5y9jx" style="padding-bottom: 184px;"><div class="css-view-g5y9jx"><div class="css-view-g5y9jx"><div class="css-view-g5y9jx r-borderBottomLeftRadius-kj4tcz r-borderBottomRightRadius-wab3e5 r-paddingBottom-qn3fzs r-paddingInline-u9wvl5" style="padding-top: 83px; background-image: linear-gradient(rgb(30, 58, 138), rgb(15, 30, 94));"><div dir="auto" class="css-text-146c3p1 r-color-116b78n r-fontFamily-1fclqmy r-fontSize-n6v787">Bonjour, Pr. Mardochée</div><div dir="auto" class="css-text-146c3p1 r-color-jwli3a r-fontFamily-1fx275y r-fontSize-yy2aun r-letterSpacing-icto9i r-marginTop-14gqq1x">Tableau de bord</div><div class="css-view-g5y9jx r-flexDirection-18u37iz r-gap-uaa2di r-marginTop-1x0uki6"><div class="css-view-g5y9jx r-backgroundColor-1fpi9eo r-borderColor-af1wpz r-borderRadius-t23y2h r-borderWidth-rs99b7 r-flex-13awgt0 r-paddingBlock-1ml3abn r-paddingInline-3o4zer"><div dir="auto" class="css-text-146c3p1 r-color-jwli3a r-fontFamily-1fx275y r-fontSize-evnaw">0</div><div dir="auto" class="css-text-146c3p1 r-color-7p11b r-fontFamily-1fclqmy r-fontSize-1gkfh8e r-letterSpacing-1ikidpy r-marginTop-1bymd8e r-textTransform-tsynxw">Cours</div></div><div class="css-view-g5y9jx r-backgroundColor-1fpi9eo r-borderColor-af1wpz r-borderRadius-t23y2h r-borderWidth-rs99b7 r-flex-13awgt0 r-paddingBlock-1ml3abn r-paddingInline-3o4zer"><div dir="auto" class="css-text-146c3p1 r-color-jwli3a r-fontFamily-1fx275y r-fontSize-evnaw">0</div><div dir="auto" class="css-text-146c3p1 r-color-7p11b r-fontFamily-1fclqmy r-fontSize-1gkfh8e r-letterSpacing-1ikidpy r-marginTop-1bymd8e r-textTransform-tsynxw">Étudiants</div></div><div class="css-view-g5y9jx r-backgroundColor-1fpi9eo r-borderColor-af1wpz r-borderRadius-t23y2h r-borderWidth-rs99b7 r-flex-13awgt0 r-paddingBlock-1ml3abn r-paddingInline-3o4zer"><div dir="auto" class="css-text-146c3p1 r-color-jwli3a r-fontFamily-1fx275y r-fontSize-evnaw">0</div><div dir="auto" class="css-text-146c3p1 r-color-7p11b r-fontFamily-1fclqmy r-fontSize-1gkfh8e r-letterSpacing-1ikidpy r-marginTop-1bymd8e r-textTransform-tsynxw">Corrections</div></div></div><div class="css-view-g5y9jx r-alignItems-1awozwy r-backgroundColor-1fpi9eo r-borderRadius-t23y2h r-flexDirection-18u37iz r-marginTop-1wzrnnt r-padding-1slz7xr"><div class="css-view-g5y9jx" style="flex: 1 1 0%;"><div dir="auto" class="css-text-146c3p1 r-color-7p11b r-fontFamily-1fclqmy r-fontSize-1gkfh8e r-letterSpacing-1ikidpy r-textTransform-tsynxw">Moyenne générale</div><div dir="auto" class="css-text-146c3p1 r-color-jwli3a r-fontFamily-1fx275y r-fontSize-evnaw r-marginTop-1bymd8e">—</div></div><div class="css-view-g5y9jx r-alignItems-1awozwy r-backgroundColor-legojq r-borderRadius-18c69zk r-flexDirection-18u37iz r-gap-ojf8lh r-paddingBlock-vuvdlw r-paddingInline-1ubuhtd"><div dir="auto" class="css-text-146c3p1 r-userSelect-lrvibr" style="font-size: 14px; color: rgb(255, 255, 255); font-family: feather; font-weight: normal; font-style: normal;"></div><div dir="auto" class="css-text-146c3p1 r-color-jwli3a r-fontFamily-1bxoz39 r-fontSize-1enofrn">0 examens</div></div></div></div><div class="css-view-g5y9jx r-paddingBlock-dd0y9b r-paddingInline-u9wvl5"><div dir="auto" class="css-text-146c3p1 r-fontFamily-1fx275y r-fontSize-1i10wst r-letterSpacing-12sm5po" style="color: rgb(15, 23, 42);">Mes cours</div></div></div></div><div class="css-view-g5y9jx r-alignItems-1awozwy r-justifyContent-1777fci r-paddingBlock-1c8wk46 r-paddingInline-cxgwc0"><div class="css-view-g5y9jx r-alignItems-1awozwy r-borderRadius-nsiyw1 r-height-sga3zk r-justifyContent-1777fci r-marginBottom-1ifxtd0 r-width-7a29px" style="background-color: rgb(219, 234, 254);"><div dir="auto" class="css-text-146c3p1 r-userSelect-lrvibr" style="font-size: 28px; color: rgb(30, 58, 138); font-family: feather; font-weight: normal; font-style: normal;"></div></div><div dir="auto" class="css-text-146c3p1 r-fontFamily-1bxoz39 r-fontSize-1inkyih r-marginBottom-f1odvy r-textAlign-q4m81j" style="color: rgb(15, 23, 42);">Aucun cours pour le moment</div><div dir="auto" class="css-text-146c3p1 r-fontFamily-vsb09d r-fontSize-1b43r93 r-lineHeight-rjixqe r-maxWidth-4m99jg r-textAlign-q4m81j" style="color: rgb(100, 116, 139);">Importez votre premier cours pour démarrer la correction automatique des copies.</div><div class="css-view-g5y9jx" style="margin-top: 16px;"><div tabindex="0" class="css-view-g5y9jx r-cursor-1loqt21 r-touchAction-1otgn73 r-alignItems-1awozwy r-flexDirection-18u37iz r-justifyContent-1777fci" style="height: 48px; padding-right: 18px; padding-left: 18px; background-color: rgb(30, 58, 138); border-color: rgb(30, 58, 138); border-width: 0px; opacity: 1; border-radius: 12px;"><div dir="auto" class="css-text-146c3p1 r-userSelect-lrvibr" style="font-size: 18px; color: rgb(255, 255, 255); font-family: feather; font-weight: normal; font-style: normal;"></div><div dir="auto" class="css-text-146c3p1 r-textAlign-q4m81j" style="color: rgb(255, 255, 255); font-size: 15px; font-family: Inter_600SemiBold; margin-left: 8px;">Créer un cours</div></div></div></div></div></div></div></div></div></div></div><div class="css-view-g5y9jx r-bottom-1p0dtai r-right-zchlnj r-left-1d2f490 r-pointerEvents-105ug2t" style="border-color: rgb(226, 232, 240) rgb(216, 216, 216) rgb(216, 216, 216); padding: 6px 0px 0px; background-color: rgb(255, 255, 255); border-top-width: 1px; height: 84px; transform: translateY(0px);"><div class="css-view-g5y9jx r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-pointerEvents-633pao"><div class="css-view-g5y9jx" style="flex: 1 1 0%; background-color: rgb(255, 255, 255);"></div></div><div role="tablist" class="css-view-g5y9jx r-flex-13awgt0 r-flexDirection-18u37iz"><div class="css-view-g5y9jx r-flex-13awgt0" style="border-radius: 0px; overflow: visible;"><a href="https://0783a5af-b4f7-4da0-ace0-349cdb8c4ca1-00-2ailxr6wesxwy.expo.spock.replit.dev/" role="tab" aria-selected="true" tabindex="0" class="css-view-g5y9jx r-touchAction-1otgn73 r-alignItems-1awozwy r-borderCurve-1onu96p r-flexDirection-eqz5dr r-justifyContent-1h0z5md r-padding-1uu6nss" style="cursor: pointer; flex: 1 1 0%; background-color: rgba(0, 0, 0, 0); border-radius: 0px; opacity: 1;"><div class="css-view-g5y9jx r-height-h0d30l r-width-726pan"><div class="css-view-g5y9jx r-alignItems-1awozwy r-alignSelf-1kihuf0 r-height-1pi2tsx r-justifyContent-1777fci r-position-u8s1d r-width-13qz1uu" style="opacity: 1; min-width: 25px;"><div dir="auto" class="css-text-146c3p1 r-userSelect-lrvibr" style="font-size: 22px; color: rgb(30, 58, 138); font-family: feather; font-weight: normal; font-style: normal;"></div></div><div class="css-view-g5y9jx r-alignItems-1awozwy r-alignSelf-1kihuf0 r-height-1pi2tsx r-justifyContent-1777fci r-position-u8s1d r-width-13qz1uu" style="opacity: 0;"><div dir="auto" class="css-text-146c3p1 r-userSelect-lrvibr" style="font-size: 22px; color: rgb(100, 116, 139); font-family: feather; font-weight: normal; font-style: normal;"></div></div></div><div dir="auto" class="css-text-146c3p1 r-maxWidth-dnmrzs r-overflow-1udh08x r-textOverflow-1udbk01 r-whiteSpace-3s2u2q r-wordWrap-1iln25a r-backgroundColor-1niwhzg r-textAlign-q4m81j" style="color: rgb(30, 58, 138); font-weight: 500; font-family: Inter_500Medium; font-size: 11px;">Cours</div></a></div><div class="css-view-g5y9jx r-flex-13awgt0" style="border-radius: 0px; overflow: visible;"><a href="https://0783a5af-b4f7-4da0-ace0-349cdb8c4ca1-00-2ailxr6wesxwy.expo.spock.replit.dev/scanner" role="tab" aria-selected="false" tabindex="0" class="css-view-g5y9jx r-touchAction-1otgn73 r-alignItems-1awozwy r-borderCurve-1onu96p r-flexDirection-eqz5dr r-justifyContent-1h0z5md r-padding-1uu6nss" style="cursor: pointer; flex: 1 1 0%; background-color: rgba(0, 0, 0, 0); border-radius: 0px; opacity: 1;"><div class="css-view-g5y9jx r-height-h0d30l r-width-726pan"><div class="css-view-g5y9jx r-alignItems-1awozwy r-alignSelf-1kihuf0 r-height-1pi2tsx r-justifyContent-1777fci r-position-u8s1d r-width-13qz1uu" style="opacity: 0; min-width: 25px;"><div dir="auto" class="css-text-146c3p1 r-userSelect-lrvibr" style="font-size: 22px; color: rgb(30, 58, 138); font-family: feather; font-weight: normal; font-style: normal;"></div></div><div class="css-view-g5y9jx r-alignItems-1awozwy r-alignSelf-1kihuf0 r-height-1pi2tsx r-justifyContent-1777fci r-position-u8s1d r-width-13qz1uu" style="opacity: 1;"><div dir="auto" class="css-text-146c3p1 r-userSelect-lrvibr" style="font-size: 22px; color: rgb(100, 116, 139); font-family: feather; font-weight: normal; font-style: normal;"></div></div></div><div dir="auto" class="css-text-146c3p1 r-maxWidth-dnmrzs r-overflow-1udh08x r-textOverflow-1udbk01 r-whiteSpace-3s2u2q r-wordWrap-1iln25a r-backgroundColor-1niwhzg r-textAlign-q4m81j" style="color: rgb(100, 116, 139); font-weight: 500; font-family: Inter_500Medium; font-size: 11px;">Scanner</div></a></div><div class="css-view-g5y9jx r-flex-13awgt0" style="border-radius: 0px; overflow: visible;"><a href="https://0783a5af-b4f7-4da0-ace0-349cdb8c4ca1-00-2ailxr6wesxwy.expo.spock.replit.dev/notes" role="tab" aria-selected="false" tabindex="0" class="css-view-g5y9jx r-touchAction-1otgn73 r-alignItems-1awozwy r-borderCurve-1onu96p r-flexDirection-eqz5dr r-justifyContent-1h0z5md r-padding-1uu6nss" style="cursor: pointer; flex: 1 1 0%; background-color: rgba(0, 0, 0, 0); border-radius: 0px; opacity: 1;"><div class="css-view-g5y9jx r-height-h0d30l r-width-726pan"><div class="css-view-g5y9jx r-alignItems-1awozwy r-alignSelf-1kihuf0 r-height-1pi2tsx r-justifyContent-1777fci r-position-u8s1d r-width-13qz1uu" style="opacity: 0; min-width: 25px;"><div dir="auto" class="css-text-146c3p1 r-userSelect-lrvibr" style="font-size: 22px; color: rgb(30, 58, 138); font-family: feather; font-weight: normal; font-style: normal;"></div></div><div class="css-view-g5y9jx r-alignItems-1awozwy r-alignSelf-1kihuf0 r-height-1pi2tsx r-justifyContent-1777fci r-position-u8s1d r-width-13qz1uu" style="opacity: 1;"><div dir="auto" class="css-text-146c3p1 r-userSelect-lrvibr" style="font-size: 22px; color: rgb(100, 116, 139); font-family: feather; font-weight: normal; font-style: normal;"></div></div></div><div dir="auto" class="css-text-146c3p1 r-maxWidth-dnmrzs r-overflow-1udh08x r-textOverflow-1udbk01 r-whiteSpace-3s2u2q r-wordWrap-1iln25a r-backgroundColor-1niwhzg r-textAlign-q4m81j" style="color: rgb(100, 116, 139); font-weight: 500; font-family: Inter_500Medium; font-size: 11px;">Notes</div></a></div><div class="css-view-g5y9jx r-flex-13awgt0" style="border-radius: 0px; overflow: visible;"><a href="https://0783a5af-b4f7-4da0-ace0-349cdb8c4ca1-00-2ailxr6wesxwy.expo.spock.replit.dev/exams" role="tab" aria-selected="false" tabindex="0" class="css-view-g5y9jx r-touchAction-1otgn73 r-alignItems-1awozwy r-borderCurve-1onu96p r-flexDirection-eqz5dr r-justifyContent-1h0z5md r-padding-1uu6nss" style="cursor: pointer; flex: 1 1 0%; background-color: rgba(0, 0, 0, 0); border-radius: 0px; opacity: 1;"><div class="css-view-g5y9jx r-height-h0d30l r-width-726pan"><div class="css-view-g5y9jx r-alignItems-1awozwy r-alignSelf-1kihuf0 r-height-1pi2tsx r-justifyContent-1777fci r-position-u8s1d r-width-13qz1uu" style="opacity: 0; min-width: 25px;"><div dir="auto" class="css-text-146c3p1 r-userSelect-lrvibr" style="font-size: 22px; color: rgb(30, 58, 138); font-family: feather; font-weight: normal; font-style: normal;"></div></div><div class="css-view-g5y9jx r-alignItems-1awozwy r-alignSelf-1kihuf0 r-height-1pi2tsx r-justifyContent-1777fci r-position-u8s1d r-width-13qz1uu" style="opacity: 1;"><div dir="auto" class="css-text-146c3p1 r-userSelect-lrvibr" style="font-size: 22px; color: rgb(100, 116, 139); font-family: feather; font-weight: normal; font-style: normal;"></div></div></div><div dir="auto" class="css-text-146c3p1 r-maxWidth-dnmrzs r-overflow-1udh08x r-textOverflow-1udbk01 r-whiteSpace-3s2u2q r-wordWrap-1iln25a r-backgroundColor-1niwhzg r-textAlign-q4m81j" style="color: rgb(100, 116, 139); font-weight: 500; font-family: Inter_500Medium; font-size: 11px;">Examens</div></a></div><div class="css-view-g5y9jx r-flex-13awgt0" style="border-radius: 0px; overflow: visible;"><a href="https://0783a5af-b4f7-4da0-ace0-349cdb8c4ca1-00-2ailxr6wesxwy.expo.spock.replit.dev/profile" role="tab" aria-selected="false" tabindex="0" class="css-view-g5y9jx r-touchAction-1otgn73 r-alignItems-1awozwy r-borderCurve-1onu96p r-flexDirection-eqz5dr r-justifyContent-1h0z5md r-padding-1uu6nss" style="cursor: pointer; flex: 1 1 0%; background-color: rgba(0, 0, 0, 0); border-radius: 0px; opacity: 1;"><div class="css-view-g5y9jx r-height-h0d30l r-width-726pan"><div class="css-view-g5y9jx r-alignItems-1awozwy r-alignSelf-1kihuf0 r-height-1pi2tsx r-justifyContent-1777fci r-position-u8s1d r-width-13qz1uu" style="opacity: 0; min-width: 25px;"><div dir="auto" class="css-text-146c3p1 r-userSelect-lrvibr" style="font-size: 22px; color: rgb(30, 58, 138); font-family: feather; font-weight: normal; font-style: normal;"></div></div><div class="css-view-g5y9jx r-alignItems-1awozwy r-alignSelf-1kihuf0 r-height-1pi2tsx r-justifyContent-1777fci r-position-u8s1d r-width-13qz1uu" style="opacity: 1;"><div dir="auto" class="css-text-146c3p1 r-userSelect-lrvibr" style="font-size: 22px; color: rgb(100, 116, 139); font-family: feather; font-weight: normal; font-style: normal;"></div></div></div><div dir="auto" class="css-text-146c3p1 r-maxWidth-dnmrzs r-overflow-1udh08x r-textOverflow-1udbk01 r-whiteSpace-3s2u2q r-wordWrap-1iln25a r-backgroundColor-1niwhzg r-textAlign-q4m81j" style="color: rgb(100, 116, 139); font-weight: 500; font-family: Inter_500Medium; font-size: 11px;">Profil</div></a></div></div></div></div></div></div></div></div></div></div></div></div>
+  <script src="./entry.bundle" defer=""></script><script src="./replit-pill.global.js.download" data-repl-id="0783a5af-b4f7-4da0-ace0-349cdb8c4ca1"></script>
+
+<div id="replit-pill-host"><template shadowrootmode="closed"><style>
+        #replit-pill {
+          position: fixed;
+          bottom: 48px;
+          right: 48px;
+          border-radius: 120px;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+          font-size: 12px;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 12px;
+          z-index: 1000000;
+          white-space: nowrap;
+          cursor: pointer;
+          overflow: hidden;
+          background-color: rgba(0, 0, 0, 0.4);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+          color: #f0f2f6;
+          box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.05), 1px 1px 1px 0px rgba(255, 255, 255, 0.1);
+          transition: transform 0.2s ease;
+        }
+        #replit-pill:hover {
+          transform: scale(1.05);
+        }
+        #replit-pill .shimmer {
+          position: absolute;
+          inset: 0;
+          transform: translateX(-100%);
+          transition: transform 0.7s ease-in-out;
+          background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+          pointer-events: none;
+        }
+        #replit-pill:hover .shimmer {
+          transform: translateX(100%);
+        }
+        #replit-pill .badge-content {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          position: relative;
+          flex: 0 0 auto;
+        }
+        #replit-pill .replit-logo {
+          color: #f0f2f6;
+        }
+        #replit-pill .replit-text {
+          font-weight: 500;
+          line-height: 20px;
+          color: #f0f2f6;
+        }
+        #replit-pill .close-button {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 2px;
+          flex: 0 0 auto;
+          border-radius: 64px;
+          width: 12px;
+          height: 12px;
+          min-width: 0;
+          cursor: pointer;
+          border: none;
+          box-sizing: border-box;
+          background-color: transparent;
+          transition: background-color 0.2s ease;
+        }
+        #replit-pill .close-button:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+        #replit-pill .close-button:focus-visible {
+          outline: 1px solid #e6e9ef;
+          outline-offset: 1px;
+        }
+        #replit-pill .close-icon {
+          width: 8px;
+          height: 8px;
+          color: #e6e9ef;
+        }
+      </style><div id="replit-pill"><div class="shimmer"></div><div class="badge-content"><svg width="10.67" height="16" viewBox="0 0 50 75" fill="none" class="replit-logo">
+        <path d="M25 19.995C25 20.0375 25 20.0575 25 20.085C25.015 21.34 25.5475 22.6275 26.425 23.525C26.445 23.545 26.4475 23.5475 26.45 23.55C26.485 23.585 26.5025 23.6025 26.54 23.6375C27.4225 24.485 28.6775 25.005 29.9025 25.03C29.9525 25.03 29.9975 25.03 30.0825 25.03H42C44.8 25.03 46.2 25.03 47.27 25.575C48.21 26.055 48.975 26.82 49.455 27.76C50 28.83 50 30.23 50 33.03V42.03C50 44.83 50 46.23 49.455 47.3C48.975 48.24 48.21 49.005 47.27 49.485C46.2 50.03 44.8 50.03 42 50.03H29.9275C28.6425 50.0325 27.3225 50.58 26.4125 51.485C26.4075 51.49 26.4775 51.42 26.45 51.4475C26.445 51.4525 26.4425 51.4525 26.4225 51.475C25.545 52.3725 25.0125 53.6575 24.9975 54.9125C24.9975 54.94 24.9975 54.9625 24.9975 55.0025V67.0575C24.9975 69.8575 24.9975 71.2575 24.4525 72.3275C23.9725 73.2675 23.2075 74.0325 22.2675 74.5125C21.1975 75.0575 19.7975 75.0575 16.9975 75.0575H7.9975C5.1975 75.0575 3.7975 75.0575 2.7275 74.5125C1.7875 74.0325 1.0225 73.2675 0.542498 72.3275C-0.00250244 71.2575 -0.00250244 69.8575 -0.00250244 67.0575V58.0575C-0.00250244 55.2575 -0.00250244 53.8575 0.542498 52.7875C1.0225 51.8475 1.7875 51.0825 2.7275 50.6025C3.7975 50.0575 5.1975 50.0575 7.9975 50.0575H19.7225C19.9 50.0575 19.9875 50.0575 20.08 50.055C21.2475 50.0125 22.4375 49.52 23.295 48.7225C23.3625 48.66 23.4125 48.61 23.5125 48.51C23.55 48.4725 23.5675 48.455 23.6025 48.42C24.455 47.5325 24.9725 46.2825 24.9975 45.0525C24.9975 45.0025 24.9975 44.96 24.9975 44.875V30.12C24.9975 30.0325 24.9975 29.99 24.9975 29.94C24.9725 28.71 24.455 27.46 23.6025 26.575C23.5675 26.54 23.55 26.52 23.5125 26.4825C23.475 26.445 23.4575 26.4275 23.42 26.3925C22.5325 25.54 21.2825 25.0225 20.0525 24.9975C20.0025 24.9975 19.96 24.9975 19.875 24.9975H7.9975C5.1975 24.9975 3.7975 24.9975 2.7275 24.4525C1.7875 23.9725 1.0225 23.2075 0.542498 22.2675C-0.00250244 21.1975 -0.00250244 19.7975 -0.00250244 16.9975V7.9975C-2.44146e-06 5.2 -2.44379e-06 3.8 0.544998 2.73C1.025 1.79 1.79 1.025 2.73 0.545C3.8 0 5.2 0 8 0H17C19.8 0 21.2 0 22.27 0.545C23.21 1.025 23.975 1.79 24.455 2.73C25 3.8 25 5.2 25 8V19.995Z" fill="currentColor"></path>
+      </svg><div class="replit-text">Made with Replit</div></div><button class="close-button" aria-label="Close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="close-icon">
+        <path d="M18 6 6 18"></path>
+        <path d="m6 6 12 12"></path>
+      </svg></button></div></template></div><div style="position: fixed; left: 0px; top: 0px; width: 0px; height: 0px; z-index: -1; overflow: hidden; visibility: hidden; transition-duration: 0.05s; transition-property: padding; transition-delay: 0s; padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right);"></div><div style="position: fixed; left: 0px; top: 0px; width: 0px; height: 0px; z-index: -1; overflow: hidden; visibility: hidden; transition-duration: 0.05s; transition-property: padding; transition-delay: 0s; padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right);"></div></body></html>
