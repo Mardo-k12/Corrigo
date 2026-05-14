@@ -147,7 +147,7 @@ Status: RUNNING
 Status: Ready (attends config Gemini)
 ```
 
-### SmartGrader (Mobile)
+### CORRIGO (Mobile)
 ```bash
 ✅ Configuration présente
 Status: Ready (Expo)

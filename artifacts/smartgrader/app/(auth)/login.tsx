@@ -45,7 +45,7 @@ export default function LoginScreen() {
           <View style={styles.logo}>
             <Feather name="check" size={22} color={colors.primary} />
           </View>
-          <Text style={styles.brand}>SmartGrader</Text>
+          <Text style={styles.brand}>CORRIGO</Text>
           <View style={styles.upcChip}>
             <Text style={styles.upcText}>UPC</Text>
           </View>

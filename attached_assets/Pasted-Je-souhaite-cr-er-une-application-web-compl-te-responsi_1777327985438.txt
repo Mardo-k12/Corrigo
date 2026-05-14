@@ -1,6 +1,6 @@
 Je souhaite créer une application web complète (responsive, utilisable sur mobile comme une app) pour permettre à des enseignants de corriger automatiquement des copies d’examen avec l’intelligence artificielle.
 
-Nom du projet : SmartGrader UPC
+Nom du projet : CORRIGO
 
 Public cible : professeurs d’université (notamment à l’UPC, RDC).
 

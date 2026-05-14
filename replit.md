@@ -28,8 +28,8 @@ See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and pa
 
 ## Artifacts
 
-- **artifacts/api-server** — Express API. Hosts SmartGrader AI routes (Gemini OCR + grading) at `/api/ai/*` using `@google/genai` (model `gemini-2.5-flash`). Requires `GEMINI_API_KEY`.
-- **artifacts/smartgrader** — Expo (mobile + web) app for UPC teachers. Auth (local JWT-like via api-server), courses, exam scanner, AI auto-grading, students, exam generator, dashboards. French UI, UPC blue (#1e3a8a) + white. Calls AI through `lib/api.ts` using `EXPO_PUBLIC_DOMAIN`.
+- **artifacts/api-server** — Express API. Hosts CORRIGO AI routes (Gemini OCR + grading) at `/api/ai/*` using `@google/genai` (model `gemini-2.5-flash`). Requires `GEMINI_API_KEY`.
+- **artifacts/corrigo** — Expo (mobile + web) app for UPC teachers. Auth (local JWT-like via api-server), courses, exam scanner, AI auto-grading, students, exam generator, dashboards. French UI, UPC blue (#1e3a8a) + white. Calls AI through `lib/api.ts` using `EXPO_PUBLIC_DOMAIN`.
 - **artifacts/mockup-sandbox** — UI sandbox (default).
 
 ## Web compatibility notes (Expo + react-native-web 0.21)

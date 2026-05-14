@@ -116,7 +116,7 @@ export default function ProfileScreen() {
         <Card padding={0}>
           <SettingRow
             icon="info"
-            label="À propos de SmartGrader UPC"
+            label="À propos de CORRIGO"
             description="Application de correction par IA pour enseignants."
             colors={colors}
           />
@@ -145,7 +145,7 @@ export default function ProfileScreen() {
         />
 
         <Text style={[styles.footer, { color: colors.mutedForeground }]}>
-          SmartGrader UPC · v1.0.0
+          CORRIGO · v1.0.0
         </Text>
       </ScrollView>
     </View>

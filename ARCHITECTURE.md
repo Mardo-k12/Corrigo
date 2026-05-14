@@ -26,7 +26,7 @@ graph TB
     
     subgraph "Frontend Applications"
         FrontendWeb["🎨 Mockup Sandbox<br/>React + Vite + Tailwind"]
-        MobileApp["📱 SmartGrader<br/>React Native + Expo"]
+        MobileApp["📱 CORRIGO<br/>React Native + Expo"]
     end
     
     subgraph "Shared Libraries"
@@ -93,7 +93,7 @@ Corrigo/
 │   │   ├── vite.config.ts    # Configuration Vite
 │   │   └── tailwind.config.ts # Configuration Tailwind
 │   │
-│   └── smartgrader/          # Mobile App (React Native)
+│   └── corrigo/              # Mobile App (React Native)
 │       ├── app/              # Expo Router screens
 │       │   ├── (auth)/       # Écrans authentification
 │       │   ├── (tabs)/       # Écrans principaux
@@ -157,7 +157,7 @@ Corrigo/
 ```mermaid
 sequenceDiagram
     participant User as Utilisateur
-    participant Mobile as SmartGrader
+    participant Mobile as CORRIGO
     participant API as API Server
     participant Vision as Google Vision API
     participant Gemini as Google Gemini AI
@@ -409,7 +409,7 @@ artifacts/
 ├─ mockup-sandbox
 │  ├─ Dépend de: api-client-react
 │  └─ Déploie: React web
-└─ smartgrader
+└─ corrigo
    ├─ Dépend de: api-client-react
    └─ Déploie: React Native mobile
 ```

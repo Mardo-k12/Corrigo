@@ -3,6 +3,6 @@ outputs = []
 
 [[generated]]
 id = "n3tjZHi0PJzM7kCOvsMkX"
-uri = "file://artifacts/smartgrader/assets/images/icon.png"
+uri = "file://artifacts/corrigo/assets/images/icon.png"
 type = "image"
-title = "smartgrader app icon"
+title = "CORRIGO app icon"

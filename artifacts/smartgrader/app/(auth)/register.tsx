@@ -60,7 +60,7 @@ export default function RegisterScreen() {
 
         <Text style={[styles.title, { color: colors.foreground }]}>Créer votre compte</Text>
         <Text style={[styles.subtitle, { color: colors.mutedForeground }]}>
-          Rejoignez SmartGrader pour automatiser la correction de vos examens.
+          Rejoignez CORRIGO pour automatiser la correction de vos examens.
         </Text>
 
         <View style={{ gap: 14, marginTop: 28 }}>

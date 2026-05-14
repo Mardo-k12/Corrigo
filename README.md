@@ -77,7 +77,7 @@ pnpm -C artifacts/api-server dev
 pnpm -C artifacts/mockup-sandbox dev
 
 # Terminal 3 - App Mobile
-pnpm -C artifacts/smartgrader dev
+pnpm -C artifacts/corrigo dev
 ```
 
 ➜ **Web** : http://localhost:5173  
@@ -104,7 +104,7 @@ Corrigo/
 ├── artifacts/
 │   ├── api-server/        # Backend Node.js + Express
 │   ├── mockup-sandbox/    # Frontend React + Vite
-│   └── smartgrader/       # App Mobile React Native + Expo
+│   └── corrigo/           # App Mobile React Native + Expo
 ├── lib/
 │   ├── api-spec/          # Spec OpenAPI
 │   ├── api-client-react/  # Client React Query généré

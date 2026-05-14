@@ -254,7 +254,7 @@ LOG_LEVEL=debug
 
 ## 📱 Problèmes Mobile (Expo)
 
-### ❌ "Module not found in /smartgrader"
+### ❌ "Module not found in /corrigo"
 
 **Cause** : Dépendances manquantes pour React Native.
 

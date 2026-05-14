@@ -99,7 +99,7 @@ artifacts/
 │       ├── App.tsx      # Composant racine
 │       ├── components/  # Composants UI
 │       └── hooks/       # Hooks custom
-└── smartgrader/         # App Mobile
+└── corrigo/             # App Mobile
     └── app/             # Écrans Expo Router
 
 lib/

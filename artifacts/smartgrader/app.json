@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "SmartGrader UPC",
-    "slug": "smartgrader",
+    "name": "CORRIGO",
+    "slug": "corrigo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "smartgrader",
+    "scheme": "corrigo",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
@@ -32,8 +32,8 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "SmartGrader UPC a besoin d'accéder à votre galerie pour importer des copies d'étudiants.",
-          "cameraPermission": "SmartGrader UPC a besoin de votre appareil photo pour scanner les copies."
+          "photosPermission": "CORRIGO a besoin d'accéder à votre galerie pour importer des copies d'étudiants.",
+          "cameraPermission": "CORRIGO a besoin de votre appareil photo pour scanner les copies."
         }
       ]
     ],
