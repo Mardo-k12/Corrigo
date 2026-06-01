@@ -1,3 +1,13 @@
+import path from "path";
+import { fileURLToPath } from "url";
+import dotenv from "dotenv";
+
+// Load environment variables from .env.local
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const envPath = path.join(__dirname, "..", ".env.local");
+dotenv.config({ path: envPath });
+
 import app from "./app";
 import { logger } from "./lib/logger";
 
