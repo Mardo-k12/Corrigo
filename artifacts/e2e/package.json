@@ -12,7 +12,6 @@
     "test:load:spike": "k6 run load-tests/spike-test.js"
   },
   "devDependencies": {
-    "cypress": "^13.6.0",
-    "k6": "^0.48.0"
+    "cypress": "^13.6.0"
   }
 }

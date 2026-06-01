@@ -160,6 +160,7 @@ overrides:
 
 allowBuilds:
   '@google/genai': true
+  cypress: false
   esbuild: true
   protobufjs: true
   sharp: true
