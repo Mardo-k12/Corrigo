@@ -565,7 +565,7 @@ pnpm build                       # Build all workspaces
 
 **Configuration requise** (.env) :
 ```env
-AI_INTEGRATIONS_GEMINI_API_KEY=AIzaSy...
+AI_INTEGRATIONS_GEMINI_API_KEY=your-gemini-api-key
 AI_INTEGRATIONS_GEMINI_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai/
 ```
 

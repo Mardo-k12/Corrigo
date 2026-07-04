@@ -90,7 +90,7 @@ EXPO_PUBLIC_GOOGLE_VISION_API_KEY=your-google-api-key-here
 2. Cliquez sur **"Create Credentials"** → **"API Key"**
 3. Copiez la clé et mettez-la dans `.env.local` :
    ```env
-   AI_INTEGRATIONS_GEMINI_API_KEY=AIzaSy...
+  AI_INTEGRATIONS_GEMINI_API_KEY=your-gemini-api-key
    ```
 
 > ⚠️ **Sécurité** : Ne commit pas le `.env.local` ! Ajoutez-le à `.gitignore`
