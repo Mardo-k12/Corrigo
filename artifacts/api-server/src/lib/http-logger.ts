@@ -7,12 +7,17 @@ const httpLoggerOptions: Options = {
   logger,
   serializers: {
     req(req) {
+      const userAgentHeader =
+        typeof (req as { get?: (name: string) => string | undefined }).get === "function"
+          ? (req as { get: (name: string) => string | undefined }).get("user-agent")
+          : req.headers?.["user-agent"];
+
       return {
         id: req.id,
         method: req.method,
         url: req.url?.split("?")[0],
         ip: req.ip,
-        userAgent: req.get("user-agent"),
+        userAgent: Array.isArray(userAgentHeader) ? userAgentHeader[0] : userAgentHeader,
       };
     },
     res(res) {
