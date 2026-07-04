@@ -9,6 +9,12 @@ function normalizeApiBase(): string {
   }
 
   if (!domain) {
+    if (typeof window !== "undefined") {
+      const host = window.location.hostname;
+      if (host === "localhost" || host === "127.0.0.1") {
+        return `http://${host}:5000/api`;
+      }
+    }
     return "/api";
   }
 

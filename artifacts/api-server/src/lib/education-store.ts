@@ -110,6 +110,18 @@ const memoryState = {
   grades: [...seedData.grades] as GradeRecord[],
 };
 
+let databaseUnavailable = false;
+
+function canUseDatabase(): boolean {
+  return Boolean(hasDatabaseConfig && db && !databaseUnavailable);
+}
+
+function markDatabaseUnavailable(error: unknown): void {
+  databaseUnavailable = true;
+  const message = error instanceof Error ? error.message : String(error);
+  console.warn(`[education-store] Falling back to in-memory storage: ${message}`);
+}
+
 function toIsoDate(value: Date | string): string {
   return value instanceof Date ? value.toISOString() : new Date(value).toISOString();
 }
@@ -207,9 +219,13 @@ function toGradeDto(record: GradeRecord): GradeDto {
 
 export const educationStore = {
   async getUserById(id: string): Promise<UserDto | null> {
-    if (hasDatabaseConfig && db) {
-      const [row] = await db.select().from(users).where(eq(users.id, id));
-      return row ? toUserDto(row) : null;
+    if (canUseDatabase()) {
+      try {
+        const [row] = await db.select().from(users).where(eq(users.id, id));
+        return row ? toUserDto(row) : null;
+      } catch (error) {
+        markDatabaseUnavailable(error);
+      }
     }
     const row = memoryState.users.find((user) => user.id === id);
     return row ? toUserDto(row) : null;
@@ -229,13 +245,17 @@ export const educationStore = {
       createdAt: new Date(),
     };
 
-    if (hasDatabaseConfig && db) {
-      const existing = await db.select().from(users).where(eq(users.email, cleanEmail));
-      if (existing.length > 0) {
-        throw new Error("Un compte existe déjà pour cet email");
+    if (canUseDatabase()) {
+      try {
+        const existing = await db.select().from(users).where(eq(users.email, cleanEmail));
+        if (existing.length > 0) {
+          throw new Error("Un compte existe déjà pour cet email");
+        }
+        const [inserted] = await db.insert(users).values(record).returning();
+        return toUserDto(inserted);
+      } catch (error) {
+        markDatabaseUnavailable(error);
       }
-      const [inserted] = await db.insert(users).values(record).returning();
-      return toUserDto(inserted);
     }
 
     if (memoryState.users.some((user) => user.email === cleanEmail)) {
@@ -247,9 +267,17 @@ export const educationStore = {
 
   async loginUser(input: LoginInput): Promise<UserDto> {
     const cleanEmail = input.email.trim().toLowerCase();
-    const rows = hasDatabaseConfig && db
-      ? await db.select().from(users).where(eq(users.email, cleanEmail))
-      : memoryState.users.filter((user) => user.email === cleanEmail);
+    let rows: UserRecord[] = [];
+    if (canUseDatabase()) {
+      try {
+        rows = await db.select().from(users).where(eq(users.email, cleanEmail));
+      } catch (error) {
+        markDatabaseUnavailable(error);
+      }
+    }
+    if (rows.length === 0) {
+      rows = memoryState.users.filter((user) => user.email === cleanEmail);
+    }
     const found = rows[0];
     if (!found) {
       throw new Error("Aucun compte trouvé pour cet email");
@@ -261,9 +289,13 @@ export const educationStore = {
   },
 
   async listUsers(): Promise<UserDto[]> {
-    if (hasDatabaseConfig && db) {
-      const rows = await db.select().from(users).orderBy(desc(users.createdAt));
-      return rows.map(toUserDto);
+    if (canUseDatabase()) {
+      try {
+        const rows = await db.select().from(users).orderBy(desc(users.createdAt));
+        return rows.map(toUserDto);
+      } catch (error) {
+        markDatabaseUnavailable(error);
+      }
     }
     return memoryState.users.map(toUserDto);
   },
@@ -280,7 +312,7 @@ export const educationStore = {
       createdAt: new Date(),
     };
 
-    if (hasDatabaseConfig && db) {
+    if (canUseDatabase()) {
       const [inserted] = await db.insert(users).values(record).returning();
       return toUserDto(inserted);
     }
@@ -290,7 +322,7 @@ export const educationStore = {
   },
 
   async listCourses(userId?: string): Promise<CourseDto[]> {
-    if (hasDatabaseConfig && db) {
+    if (canUseDatabase()) {
       const query = db.select().from(courses);
       const rows = userId
         ? await query.where(eq(courses.userId, userId)).orderBy(desc(courses.createdAt))
@@ -316,7 +348,7 @@ export const educationStore = {
       createdAt: new Date(),
     };
 
-    if (hasDatabaseConfig && db) {
+    if (canUseDatabase()) {
       const [inserted] = await db.insert(courses).values(record).returning();
       return toCourseDto(inserted);
     }
@@ -326,7 +358,7 @@ export const educationStore = {
   },
 
   async updateCourse(id: string, patch: UpdateCourseInput): Promise<CourseDto | null> {
-    if (hasDatabaseConfig && db) {
+    if (canUseDatabase()) {
       const [updated] = await db.update(courses).set(patch).where(eq(courses.id, id)).returning();
       return updated ? toCourseDto(updated) : null;
     }
@@ -338,7 +370,7 @@ export const educationStore = {
   },
 
   async deleteCourse(id: string): Promise<boolean> {
-    if (hasDatabaseConfig && db) {
+    if (canUseDatabase()) {
       const deleted = await db.delete(courses).where(eq(courses.id, id)).returning({ id: courses.id });
       return deleted.length > 0;
     }
@@ -351,7 +383,7 @@ export const educationStore = {
   },
 
   async listStudents(courseId: string): Promise<StudentDto[]> {
-    if (hasDatabaseConfig && db) {
+    if (canUseDatabase()) {
       const rows = await db
         .select()
         .from(students)
@@ -375,7 +407,7 @@ export const educationStore = {
       createdAt: new Date(),
     };
 
-    if (hasDatabaseConfig && db) {
+    if (canUseDatabase()) {
       const [inserted] = await db.insert(students).values(record).returning();
       return toStudentDto(inserted);
     }
@@ -385,7 +417,7 @@ export const educationStore = {
   },
 
   async updateStudent(id: string, patch: UpdateStudentInput): Promise<StudentDto | null> {
-    if (hasDatabaseConfig && db) {
+    if (canUseDatabase()) {
       const [updated] = await db.update(students).set(patch).where(eq(students.id, id)).returning();
       return updated ? toStudentDto(updated) : null;
     }
@@ -397,7 +429,7 @@ export const educationStore = {
   },
 
   async deleteStudent(id: string): Promise<boolean> {
-    if (hasDatabaseConfig && db) {
+    if (canUseDatabase()) {
       const deleted = await db.delete(students).where(eq(students.id, id)).returning({ id: students.id });
       return deleted.length > 0;
     }
@@ -410,7 +442,7 @@ export const educationStore = {
   },
 
   async listExams(filters: ExamFilters = {}): Promise<ExamDto[]> {
-    if (hasDatabaseConfig && db) {
+    if (canUseDatabase()) {
       const query = db.select().from(exams);
       const rows = filters.courseId
         ? await query.where(eq(exams.courseId, filters.courseId)).orderBy(desc(exams.createdAt))
@@ -437,7 +469,7 @@ export const educationStore = {
       createdAt: new Date(),
     };
 
-    if (hasDatabaseConfig && db) {
+    if (canUseDatabase()) {
       const [inserted] = await db.insert(exams).values(record).returning();
       return toExamDto(inserted);
     }
@@ -447,7 +479,7 @@ export const educationStore = {
   },
 
   async updateExam(id: string, patch: UpdateExamInput): Promise<ExamDto | null> {
-    if (hasDatabaseConfig && db) {
+    if (canUseDatabase()) {
       const [updated] = await db.update(exams).set(patch).where(eq(exams.id, id)).returning();
       return updated ? toExamDto(updated) : null;
     }
@@ -459,7 +491,7 @@ export const educationStore = {
   },
 
   async deleteExam(id: string): Promise<boolean> {
-    if (hasDatabaseConfig && db) {
+    if (canUseDatabase()) {
       const deleted = await db.delete(exams).where(eq(exams.id, id)).returning({ id: exams.id });
       return deleted.length > 0;
     }
@@ -472,7 +504,7 @@ export const educationStore = {
   },
 
   async listGrades(filters: GradeFilters = {}): Promise<GradeDto[]> {
-    if (hasDatabaseConfig && db) {
+    if (canUseDatabase()) {
       const conditions = [
         filters.courseId ? eq(grades.courseId, filters.courseId) : undefined,
         filters.studentId ? eq(grades.studentId, filters.studentId) : undefined,
@@ -521,7 +553,7 @@ export const educationStore = {
       createdAt: new Date(),
     };
 
-    if (hasDatabaseConfig && db) {
+    if (canUseDatabase()) {
       const [inserted] = await db.insert(grades).values(record).returning();
       return toGradeDto(inserted);
     }
@@ -531,7 +563,7 @@ export const educationStore = {
   },
 
   async updateGrade(id: string, patch: UpdateGradeInput): Promise<GradeDto | null> {
-    if (hasDatabaseConfig && db) {
+    if (canUseDatabase()) {
       const [updated] = await db
         .update(grades)
         .set({
@@ -564,7 +596,7 @@ export const educationStore = {
   },
 
   async deleteGrade(id: string): Promise<boolean> {
-    if (hasDatabaseConfig && db) {
+    if (canUseDatabase()) {
       const deleted = await db.delete(grades).where(eq(grades.id, id)).returning({ id: grades.id });
       return deleted.length > 0;
     }
@@ -574,7 +606,7 @@ export const educationStore = {
   },
 
   async updateUserProfile(id: string, patch: UpdateUserProfileInput): Promise<UserDto | null> {
-    if (hasDatabaseConfig && db) {
+    if (canUseDatabase()) {
       const [updated] = await db.update(users).set(patch).where(eq(users.id, id)).returning();
       return updated ? toUserDto(updated) : null;
     }
