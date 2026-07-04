@@ -1,4 +1,10 @@
-# 🚀 Corrigo: De 7.5/10 à 10/10 - Guide Complet des Améliorations
+# 🚀 Corrigo: Historical Improvements Guide
+
+## Note de contexte
+
+Ce document décrit une phase d'amélioration antérieure. Il reste utile comme archive, mais il ne remplace pas l'état vérifié actuel du dépôt.
+
+Consulte [TECHNICAL_AUDIT_AND_REFACTOR_PLAN.md](TECHNICAL_AUDIT_AND_REFACTOR_PLAN.md) pour l'état courant.
 
 ## 📊 Résumé Exécutif
 

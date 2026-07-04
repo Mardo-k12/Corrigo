@@ -1,5 +1,7 @@
 # 🎁 CORRIGO PROJECT MANIFEST
 
+> Historical delivery manifest: current operational status now lives in [PRODUCTION_READY.md](PRODUCTION_READY.md) and [TECHNICAL_AUDIT_AND_REFACTOR_PLAN.md](TECHNICAL_AUDIT_AND_REFACTOR_PLAN.md).
+
 ## 📦 Delivery Package Contents
 
 **Date**: 2025  

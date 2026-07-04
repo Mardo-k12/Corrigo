@@ -123,8 +123,8 @@ export default function ProfileScreen() {
           <View style={{ height: 1, backgroundColor: colors.border, marginHorizontal: 16 }} />
           <SettingRow
             icon="shield"
-            label="Données locales"
-            description="Vos cours et notes sont stockés sur cet appareil."
+            label="Données synchronisées"
+            description="Vos cours, examens et notes sont synchronisés avec l'API Corrigo."
             colors={colors}
           />
           <View style={{ height: 1, backgroundColor: colors.border, marginHorizontal: 16 }} />

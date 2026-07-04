@@ -1,6 +1,6 @@
 # 🚀 Production Deployment Checklist
 
-> **Grade: 10/10** - Ready for production deployment
+> Historical checklist note: this file contains legacy readiness claims. Use [PRODUCTION_READY.md](PRODUCTION_READY.md) and [TECHNICAL_AUDIT_AND_REFACTOR_PLAN.md](TECHNICAL_AUDIT_AND_REFACTOR_PLAN.md) as the current source of truth.
 
 ## Pre-Deployment Verification
 

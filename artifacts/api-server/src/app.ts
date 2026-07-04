@@ -1,13 +1,11 @@
 import express, { type Express } from "express";
 import cors from "cors";
-import pinoHttp from "pino-http";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import router from "./routes";
-import { logger } from "./lib/logger";
 import { requestIdMiddleware } from "./middlewares/request-id";
 import { errorHandler } from "./middlewares/error-handler";
-import { initDataDog, trackRequestMetrics } from "./lib/datadog";
+import { initDataDog } from "./lib/datadog";
 import { createHttpLogger } from "./lib/http-logger";
 
 const app: Express = express();
@@ -37,26 +35,7 @@ app.use(limiter);
 
 // Request Logging & ID
 app.use(requestIdMiddleware);
-app.use(
-  pinoHttp({
-    logger,
-    serializers: {
-      req(req) {
-        return {
-          id: req.id,
-          method: req.method,
-          url: req.url?.split("?")[0],
-          ip: req.ip,
-        };
-      },
-      res(res) {
-        return {
-          statusCode: res.statusCode,
-        };
-      },
-    },
-  }),
-);
+app.use(createHttpLogger());
 
 // CORS Configuration
 app.use(

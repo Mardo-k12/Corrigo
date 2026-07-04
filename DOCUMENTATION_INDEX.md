@@ -1,6 +1,6 @@
 # 📖 Corrigo Documentation Index
 
-> **Project Grade: 10/10** ⭐⭐⭐⭐⭐
+> **Current status**: repaired baseline with passing `typecheck`, `test`, `lint` and `build`; historical `10/10` reports remain archived but should not be treated as the current source of truth.
 
 ---
 
@@ -26,7 +26,7 @@
 | Phase | Document | Check |
 |-------|----------|-------|
 | **Pre-Deployment** | [DEPLOYMENT_CHECKLIST.md](DEPLOYMENT_CHECKLIST.md) | ✅ |
-| **Production Ready** | [PRODUCTION_READY.md](PRODUCTION_READY.md) | ✅ |
+| **Production readiness status** | [PRODUCTION_READY.md](PRODUCTION_READY.md) | ✅ |
 | **Testing Setup** | [E2E_TESTING_GUIDE.md](E2E_TESTING_GUIDE.md) | ✅ |
 | **Post-Deployment** | [DEPLOYMENT_CHECKLIST.md](DEPLOYMENT_CHECKLIST.md) | ✅ |
 
@@ -34,12 +34,13 @@
 
 ### 📊 I want to understand the project status
 
-| Topic | Document | Grade |
+| Topic | Document | Status |
 |-------|----------|-------|
-| **Overall Summary** | [FINAL_REPORT.md](FINAL_REPORT.md) | 10/10 |
-| **Session Achievements** | [SESSION_SUMMARY.md](SESSION_SUMMARY.md) | 10/10 |
-| **Completion Details** | [COMPLETION_REPORT.md](COMPLETION_REPORT.md) | 10/10 |
-| **Project Improvements** | [IMPROVEMENTS_COMPLETE.md](IMPROVEMENTS_COMPLETE.md) | 10/10 |
+| **Current technical audit** | [TECHNICAL_AUDIT_AND_REFACTOR_PLAN.md](TECHNICAL_AUDIT_AND_REFACTOR_PLAN.md) | Current |
+| **Overall Summary** | [FINAL_REPORT.md](FINAL_REPORT.md) | Historical |
+| **Session Achievements** | [SESSION_SUMMARY.md](SESSION_SUMMARY.md) | Historical |
+| **Completion Details** | [COMPLETION_REPORT.md](COMPLETION_REPORT.md) | Historical |
+| **Project Improvements** | [IMPROVEMENTS_COMPLETE.md](IMPROVEMENTS_COMPLETE.md) | Historical |
 
 ---
 

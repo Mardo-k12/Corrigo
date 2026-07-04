@@ -61,7 +61,7 @@ BASE_PATH=/
 VITE_API_URL=http://localhost:5000/api
 ```
 
-#### **Mobile CORRIGO** - `artifacts/corrigo/.env.local`
+#### **Mobile CORRIGO** - `artifacts/smartgrader/.env.local`
 ```env
 EXPO_PUBLIC_API_URL=http://localhost:5000/api
 EXPO_PUBLIC_GOOGLE_VISION_API_KEY=your-google-api-key-here
@@ -145,7 +145,7 @@ pnpm -C artifacts/api-server dev
 
 ### 📱 Mobile (Expo)
 ```bash
-pnpm -C artifacts/corrigo dev
+pnpm -C artifacts/smartgrader dev
 # Scannez le QR code avec l'app Expo
 ```
 
@@ -163,7 +163,7 @@ pnpm -C artifacts/mockup-sandbox dev
 
 **Terminal 3** :
 ```bash
-pnpm -C artifacts/corrigo dev
+pnpm -C artifacts/smartgrader dev
 ```
 
 ---

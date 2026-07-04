@@ -21,6 +21,25 @@ function findWorkspaceRoot(startDir) {
 
 const workspaceRoot = findWorkspaceRoot(projectRoot);
 const basePath = (process.env.BASE_PATH || "/").replace(/\/+$/, "");
+const metroPort = parseInt(process.env.EXPO_METRO_PORT || "8082", 10);
+
+function resolvePackageManagerCommand() {
+  if (process.platform !== "win32") {
+    return "pnpm";
+  }
+
+  const appData = process.env.APPDATA;
+  if (appData) {
+    const cmdPath = path.join(appData, "npm", "pnpm.cmd");
+    if (fs.existsSync(cmdPath)) {
+      return cmdPath;
+    }
+  }
+
+  return "pnpm.cmd";
+}
+
+const packageManagerCommand = resolvePackageManagerCommand();
 
 function exitWithError(message) {
   console.error(message);
@@ -67,10 +86,10 @@ function getDeploymentDomain() {
     return stripProtocol(process.env.EXPO_PUBLIC_DOMAIN);
   }
 
-  console.error(
-    "ERROR: No deployment domain found. Set REPLIT_INTERNAL_APP_DOMAIN, REPLIT_DEV_DOMAIN, or EXPO_PUBLIC_DOMAIN",
+  console.warn(
+    "WARN: No deployment domain found. Falling back to localhost for local static builds.",
   );
-  process.exit(1);
+  return "localhost";
 }
 
 function prepareDirectories(timestamp) {
@@ -114,7 +133,7 @@ function clearMetroCache() {
 
 async function checkMetroHealth() {
   try {
-    const response = await fetch("http://localhost:8081/status", {
+    const response = await fetch(`http://localhost:${metroPort}/status`, {
       signal: AbortSignal.timeout(5000),
     });
     return response.ok;
@@ -125,6 +144,34 @@ async function checkMetroHealth() {
 
 function getExpoPublicReplId() {
   return process.env.REPL_ID || process.env.EXPO_PUBLIC_REPL_ID;
+}
+
+function getMetroSpawnSpec() {
+  const args = [
+    "exec",
+    "expo",
+    "start",
+    "--no-dev",
+    "--minify",
+    "--localhost",
+    "--port",
+    String(metroPort),
+  ];
+
+  if (process.platform !== "win32") {
+    return {
+      command: packageManagerCommand,
+      args,
+      shell: false,
+    };
+  }
+
+  const comspec = process.env.ComSpec || "cmd.exe";
+  return {
+    command: comspec,
+    args: ["/d", "/s", "/c", packageManagerCommand, ...args],
+    shell: false,
+  };
 }
 
 async function startMetro(expoPublicDomain, expoPublicReplId) {
@@ -141,26 +188,25 @@ async function startMetro(expoPublicDomain, expoPublicReplId) {
     EXPO_PUBLIC_DOMAIN: expoPublicDomain,
     EXPO_PUBLIC_REPL_ID: expoPublicReplId,
   };
+  const sanitizedEnv = Object.fromEntries(
+    Object.entries(env).filter(([, value]) => value !== undefined),
+  );
 
   if (expoPublicReplId) {
     console.log(`Setting EXPO_PUBLIC_REPL_ID=${expoPublicReplId}`);
   }
 
+  const spawnSpec = getMetroSpawnSpec();
+
   metroProcess = spawn(
-    "pnpm",
-    [
-      "exec",
-      "expo",
-      "start",
-      "--no-dev",
-      "--minify",
-      "--localhost",
-    ],
+    spawnSpec.command,
+    spawnSpec.args,
     {
       stdio: ["ignore", "pipe", "pipe"],
       detached: false,
       cwd: projectRoot,
-      env,
+      env: sanitizedEnv,
+      shell: spawnSpec.shell,
     },
   );
 
@@ -231,6 +277,7 @@ async function downloadBundle(platform, timestamp) {
   const entryPath = path.resolve(projectRoot, "node_modules", "expo-router", "entry");
   const bundlePath = path.relative(workspaceRoot, entryPath);
   const url = new URL(`http://localhost:8081/${bundlePath}.bundle`);
+  url.port = String(metroPort);
   url.searchParams.set("platform", platform);
   url.searchParams.set("dev", "false");
   url.searchParams.set("hot", "false");
@@ -258,7 +305,8 @@ async function downloadManifest(platform) {
 
   try {
     console.log(`Fetching ${platform} manifest...`);
-    const response = await fetch("http://localhost:8081/manifest", {
+    const manifestUrl = `http://localhost:${metroPort}/manifest`;
+    const response = await fetch(manifestUrl, {
       headers: { "expo-platform": platform },
       signal: controller.signal,
     });

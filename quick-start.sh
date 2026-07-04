@@ -43,6 +43,14 @@ if [ ! -f .env.local ]; then
 else
     echo -e "${GREEN}✅ .env.local already exists${NC}"
 fi
+if [ ! -f artifacts/api-server/.env.local ]; then
+    cp artifacts/api-server/.env.example artifacts/api-server/.env.local
+    echo -e "${YELLOW}📝 Created artifacts/api-server/.env.local${NC}"
+fi
+if [ ! -f artifacts/smartgrader/.env.local ]; then
+    cp artifacts/smartgrader/.env.example artifacts/smartgrader/.env.local
+    echo -e "${YELLOW}📝 Created artifacts/smartgrader/.env.local${NC}"
+fi
 echo ""
 
 # Database setup
@@ -75,7 +83,7 @@ echo ""
 echo -e "${YELLOW}Services will be available at:${NC}"
 echo "  API Server: http://localhost:5001"
 echo "  Web Frontend: http://localhost:5173"
-echo "  API Documentation: http://localhost:5001/api/docs"
+echo "  Mobile API Base: http://localhost:5001/api"
 echo ""
 
 echo -e "${GREEN}✅ Setup complete!${NC}"

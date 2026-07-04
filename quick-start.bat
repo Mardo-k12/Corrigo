@@ -38,6 +38,14 @@ if not exist .env.local (
 ) else (
     echo ✅ .env.local already exists
 )
+if not exist artifacts\api-server\.env.local (
+    copy artifacts\api-server\.env.example artifacts\api-server\.env.local
+    echo 📝 Created artifacts\api-server\.env.local
+)
+if not exist artifacts\smartgrader\.env.local (
+    copy artifacts\smartgrader\.env.example artifacts\smartgrader\.env.local
+    echo 📝 Created artifacts\smartgrader\.env.local
+)
 echo.
 
 REM Database setup
@@ -60,7 +68,7 @@ echo.
 echo Services will be available at:
 echo   API Server: http://localhost:5001
 echo   Web Frontend: http://localhost:5173
-echo   API Documentation: http://localhost:5001/api/docs
+echo   Mobile API Base: http://localhost:5001/api
 echo.
 echo Ready to start development? Run:
 echo   pnpm dev

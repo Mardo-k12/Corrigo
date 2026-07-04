@@ -1,4 +1,3 @@
-import { describe, it, expect } from "@jest/globals";
 import { OcrRequestSchema, GradeRequestSchema } from "../../lib/schemas";
 
 describe("AI Routes Validation", () => {

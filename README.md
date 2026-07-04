@@ -77,7 +77,7 @@ pnpm -C artifacts/api-server dev
 pnpm -C artifacts/mockup-sandbox dev
 
 # Terminal 3 - App Mobile
-pnpm -C artifacts/corrigo dev
+pnpm -C artifacts/smartgrader dev
 ```
 
 ➜ **Web** : http://localhost:5173  

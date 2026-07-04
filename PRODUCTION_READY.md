@@ -1,21 +1,46 @@
-# Corrigo: Production-Ready Exam Grading System (10/10)
+# Corrigo: Production Readiness Status
 
-## 🎯 Project Score: 10/10
+## Current Verified Status
 
-### Scoring Breakdown
+This document now reflects the verified state of the repository instead of a perfect-score claim.
+
+### Verified today
+
+- Workspace typecheck passes.
+- API tests pass.
+- API lint passes.
+- API build passes.
+- Smartgrader build works locally on Windows with the updated build script.
+- The backend now exposes concrete routes for users, courses, students, exams, grades, and AI features.
+- The mobile app is being migrated from local-first persistence to backend-first synchronization.
+
+### Not yet fully production-ready
+
+- Secret-bearing local files were still tracked and require full git cleanup and secret rotation where applicable.
+- OpenAPI documentation still lags behind the implemented backend surface.
+- The mobile app still keeps only session state locally, but now relies on the backend as the primary source for business data.
+- Some historical reporting documents in the repository still contain outdated `10/10` and `production-ready` claims.
+
+For the detailed remediation log and roadmap, see [TECHNICAL_AUDIT_AND_REFACTOR_PLAN.md](./TECHNICAL_AUDIT_AND_REFACTOR_PLAN.md).
+
+---
+
+## Operational Baseline
+
+### Engineering Snapshot
 
 | Category | Score | Status |
 |----------|-------|--------|
-| **Architecture** | ⭐⭐⭐⭐⭐ | Production-Grade Monorepo |
-| **Code Quality** | ⭐⭐⭐⭐⭐ | TypeScript + ESLint + Prettier |
-| **Testing** | ⭐⭐⭐⭐⭐ | Unit + E2E + Load Testing |
-| **Security** | ⭐⭐⭐⭐⭐ | Helmet + Rate Limit + Zod Validation |
-| **Performance** | ⭐⭐⭐⭐⭐ | Image Compression + Redis Caching |
-| **Monitoring** | ⭐⭐⭐⭐⭐ | Sentry + DataDog + Request Tracking |
-| **Documentation** | ⭐⭐⭐⭐⭐ | Complete Setup & API Guides |
-| **DevOps** | ⭐⭐⭐⭐⭐ | GitHub Actions CI/CD + Staging |
-| **Database** | ⭐⭐⭐⭐⭐ | Migrations + Audit Trail + Indexes |
-| **AI Integration** | ⭐⭐⭐⭐⭐ | Google Gemini Vision + Generative |
+| **Architecture** | Good baseline | Monorepo aligned on a shared education domain |
+| **Code Quality** | Verified | TypeScript + ESLint + Prettier on active slices |
+| **Testing** | Partial but green | API unit tests passing; broader coverage still needed |
+| **Security** | In progress | Middleware hardened, secret hygiene cleanup still required |
+| **Performance** | Partial | Compression and rate limiting present |
+| **Monitoring** | Partial | Sentry/DataDog scaffolding present, needs deployment verification |
+| **Documentation** | In correction | Core setup docs improved, legacy claims remain to normalize |
+| **DevOps** | Not fully verified | Claims exist, but full pipeline verification remains required |
+| **Database** | Improved | Domain schema aligned, migrations still to formalize |
+| **AI Integration** | Working baseline | Gemini OCR and grading routes available |
 
 ---
 

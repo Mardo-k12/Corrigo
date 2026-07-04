@@ -1,5 +1,21 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { STORAGE_KEYS, getJSON, newId, setJSON } from "@/lib/storage";
+import {
+  createCourse as createCourseRequest,
+  createExam as createExamRequest,
+  createGrade as createGradeRequest,
+  createStudent as createStudentRequest,
+  deleteCourse as deleteCourseRequest,
+  deleteExam as deleteExamRequest,
+  deleteGrade as deleteGradeRequest,
+  deleteStudent as deleteStudentRequest,
+  listCourses,
+  listExams,
+  listGrades,
+  listStudents,
+  updateCourse as updateCourseRequest,
+  updateGrade as updateGradeRequest,
+  updateStudent as updateStudentRequest,
+} from "@/lib/api";
 import type { Course, Exam, Grade, Student } from "@/lib/types";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -45,20 +61,46 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    (async () => {
-      const [c, s, e, g] = await Promise.all([
-        getJSON<Course[]>(STORAGE_KEYS.courses, []),
-        getJSON<Student[]>(STORAGE_KEYS.students, []),
-        getJSON<Exam[]>(STORAGE_KEYS.exams, []),
-        getJSON<Grade[]>(STORAGE_KEYS.grades, []),
-      ]);
-      setAllCourses(c);
-      setAllStudents(s);
-      setAllExams(e);
-      setAllGrades(g);
+    let cancelled = false;
+
+    async function syncOnUserChange() {
+      if (!userId) {
+        setAllCourses([]);
+        setAllStudents([]);
+        setAllExams([]);
+        setAllGrades([]);
+        setReady(true);
+        return;
+      }
+
+      setReady(false);
+      const coursesData = await listCourses(userId);
+      const nested = await Promise.all(
+        coursesData.map(async (course) => {
+          const [courseStudents, courseExams, courseGrades] = await Promise.all([
+            listStudents(course.id),
+            listExams(course.id),
+            listGrades({ courseId: course.id }),
+          ]);
+          return { courseStudents, courseExams, courseGrades };
+        }),
+      );
+
+      if (cancelled) return;
+
+      setAllCourses(coursesData);
+      setAllStudents(nested.flatMap((item) => item.courseStudents));
+      setAllExams(nested.flatMap((item) => item.courseExams));
+      setAllGrades(nested.flatMap((item) => item.courseGrades));
       setReady(true);
-    })();
-  }, []);
+    }
+
+    void syncOnUserChange();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [userId]);
 
   const courses = useMemo(
     () => (userId ? allCourses.filter((c) => c.userId === userId) : []).sort((a, b) => b.createdAt - a.createdAt),
@@ -82,50 +124,34 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     [allGrades, courseIds],
   );
 
-  const persistCourses = async (next: Course[]) => {
-    setAllCourses(next);
-    await setJSON(STORAGE_KEYS.courses, next);
-  };
-  const persistStudents = async (next: Student[]) => {
-    setAllStudents(next);
-    await setJSON(STORAGE_KEYS.students, next);
-  };
-  const persistExams = async (next: Exam[]) => {
-    setAllExams(next);
-    await setJSON(STORAGE_KEYS.exams, next);
-  };
-  const persistGrades = async (next: Grade[]) => {
-    setAllGrades(next);
-    await setJSON(STORAGE_KEYS.grades, next);
-  };
-
   // Courses
   const addCourse = useCallback(
     async (input: Omit<Course, "id" | "userId" | "createdAt">) => {
       if (!userId) throw new Error("Non authentifié");
-      const course: Course = { ...input, id: newId(), userId, createdAt: Date.now() };
-      await persistCourses([course, ...allCourses]);
+      const course = await createCourseRequest({ ...input, userId });
+      setAllCourses((prev) => [course, ...prev]);
       return course;
     },
-    [allCourses, userId],
+    [userId],
   );
 
   const updateCourse = useCallback(
     async (id: string, patch: Partial<Course>) => {
-      const next = allCourses.map((c) => (c.id === id ? { ...c, ...patch } : c));
-      await persistCourses(next);
+      const updated = await updateCourseRequest(id, patch);
+      setAllCourses((prev) => prev.map((course) => (course.id === id ? updated : course)));
     },
-    [allCourses],
+    [],
   );
 
   const deleteCourse = useCallback(
     async (id: string) => {
-      await persistCourses(allCourses.filter((c) => c.id !== id));
-      await persistStudents(allStudents.filter((s) => s.courseId !== id));
-      await persistExams(allExams.filter((e) => e.courseId !== id));
-      await persistGrades(allGrades.filter((g) => g.courseId !== id));
+      await deleteCourseRequest(id);
+      setAllCourses((prev) => prev.filter((course) => course.id !== id));
+      setAllStudents((prev) => prev.filter((student) => student.courseId !== id));
+      setAllExams((prev) => prev.filter((exam) => exam.courseId !== id));
+      setAllGrades((prev) => prev.filter((grade) => grade.courseId !== id));
     },
-    [allCourses, allStudents, allExams, allGrades],
+    [],
   );
 
   // Students
@@ -136,39 +162,38 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
   const addStudent = useCallback(
     async (input: Omit<Student, "id" | "createdAt">) => {
-      const student: Student = { ...input, id: newId(), createdAt: Date.now() };
-      await persistStudents([...allStudents, student]);
+      const student = await createStudentRequest(input);
+      setAllStudents((prev) => [...prev, student]);
       return student;
     },
-    [allStudents],
+    [],
   );
 
   const addStudentsBulk = useCallback(
     async (courseId: string, items: { firstName: string; lastName: string; matricule: string }[]) => {
-      const now = Date.now();
-      const newOnes: Student[] = items.map((it, i) => ({
-        ...it,
-        courseId,
-        id: newId(),
-        createdAt: now + i,
-      }));
-      await persistStudents([...allStudents, ...newOnes]);
+      const created = await Promise.all(
+        items.map((item) => createStudentRequest({ courseId, ...item })),
+      );
+      setAllStudents((prev) => [...prev, ...created]);
     },
-    [allStudents],
+    [],
   );
 
   const updateStudent = useCallback(
     async (id: string, patch: Partial<Student>) => {
-      await persistStudents(allStudents.map((s) => (s.id === id ? { ...s, ...patch } : s)));
+      const updated = await updateStudentRequest(id, patch);
+      setAllStudents((prev) => prev.map((student) => (student.id === id ? updated : student)));
     },
-    [allStudents],
+    [],
   );
 
   const deleteStudent = useCallback(
     async (id: string) => {
-      await persistStudents(allStudents.filter((s) => s.id !== id));
+      await deleteStudentRequest(id);
+      setAllStudents((prev) => prev.filter((student) => student.id !== id));
+      setAllGrades((prev) => prev.map((grade) => (grade.studentId === id ? { ...grade, studentId: undefined } : grade)));
     },
-    [allStudents],
+    [],
   );
 
   // Exams
@@ -179,18 +204,20 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
   const addExam = useCallback(
     async (input: Omit<Exam, "id" | "createdAt">) => {
-      const exam: Exam = { ...input, id: newId(), createdAt: Date.now() };
-      await persistExams([exam, ...allExams]);
+      const exam = await createExamRequest(input);
+      setAllExams((prev) => [exam, ...prev]);
       return exam;
     },
-    [allExams],
+    [],
   );
 
   const deleteExam = useCallback(
     async (id: string) => {
-      await persistExams(allExams.filter((e) => e.id !== id));
+      await deleteExamRequest(id);
+      setAllExams((prev) => prev.filter((exam) => exam.id !== id));
+      setAllGrades((prev) => prev.map((grade) => (grade.examId === id ? { ...grade, examId: undefined } : grade)));
     },
-    [allExams],
+    [],
   );
 
   // Grades
@@ -206,25 +233,27 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
   const addGrade = useCallback(
     async (input: Omit<Grade, "id" | "createdAt">) => {
-      const grade: Grade = { ...input, id: newId(), createdAt: Date.now() };
-      await persistGrades([grade, ...allGrades]);
+      const grade = await createGradeRequest(input);
+      setAllGrades((prev) => [grade, ...prev]);
       return grade;
     },
-    [allGrades],
+    [],
   );
 
   const updateGrade = useCallback(
     async (id: string, patch: Partial<Grade>) => {
-      await persistGrades(allGrades.map((g) => (g.id === id ? { ...g, ...patch } : g)));
+      const updated = await updateGradeRequest(id, patch);
+      setAllGrades((prev) => prev.map((grade) => (grade.id === id ? updated : grade)));
     },
-    [allGrades],
+    [],
   );
 
   const deleteGrade = useCallback(
     async (id: string) => {
-      await persistGrades(allGrades.filter((g) => g.id !== id));
+      await deleteGradeRequest(id);
+      setAllGrades((prev) => prev.filter((grade) => grade.id !== id));
     },
-    [allGrades],
+    [],
   );
 
   const getGrade = useCallback((id: string) => allGrades.find((g) => g.id === id), [allGrades]);

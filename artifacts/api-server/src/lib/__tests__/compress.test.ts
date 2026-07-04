@@ -1,14 +1,13 @@
-import { describe, it, expect, jest } from "@jest/globals";
-
 // Mock sharp to avoid ESM issues in Jest
 jest.mock("sharp", () => {
-  return jest.fn(() => ({
-    resize: jest.fn(function() { return this; }),
-    jpeg: jest.fn(function() { return this; }),
-    webp: jest.fn(function() { return this; }),
-    png: jest.fn(function() { return this; }),
-    toBuffer: jest.fn(async () => Buffer.from("compressed")),
-  }));
+  const transformer: any = {};
+  transformer.resize = jest.fn(() => transformer);
+  transformer.jpeg = jest.fn(() => transformer);
+  transformer.webp = jest.fn(() => transformer);
+  transformer.png = jest.fn(() => transformer);
+  transformer.toBuffer = jest.fn(async () => Buffer.from("compressed"));
+
+  return jest.fn(() => transformer);
 });
 
 describe("Image Compression", () => {
@@ -20,7 +19,6 @@ describe("Image Compression", () => {
 
   it("should have correct compression options interface", async () => {
     const { compressImage } = await import("../compress");
-    const buffer = Buffer.from([0x89, 0x50, 0x4e, 0x47]); // PNG header
     // Just verify function exists and accepts parameters
     expect(compressImage).toBeDefined();
   });

@@ -1,4 +1,10 @@
-# 🎯 Corrigo Project: 10/10 Achievement Report
+# 🎯 Corrigo Project: Historical Achievement Report
+
+## Status Note
+
+This report is kept for historical traceability. Some scores and readiness claims below predate the latest repairs and should not be used as the current operational assessment.
+
+For the current assessment, refer to [TECHNICAL_AUDIT_AND_REFACTOR_PLAN.md](TECHNICAL_AUDIT_AND_REFACTOR_PLAN.md).
 
 ## Project Completion Status
 

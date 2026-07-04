@@ -1,4 +1,3 @@
-import { describe, it, expect } from "@jest/globals";
 import { buildPaginatedResponse, getPaginationParams } from "../../lib/pagination";
 import { Request } from "express";
 
@@ -18,7 +17,7 @@ describe("Pagination Utilities", () => {
   });
 
   it("should return correct hasMore flag", () => {
-    const data = [];
+    const data: number[] = [];
 
     // Last page
     const lastPageResponse = buildPaginatedResponse(data, 3, 20, 45);

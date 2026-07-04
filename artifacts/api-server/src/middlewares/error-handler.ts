@@ -18,6 +18,7 @@ export const errorHandler = (
   res: Response,
   _next: NextFunction
 ) => {
+  void _next;
   if (err instanceof AppError) {
     logger.warn(
       { statusCode: err.statusCode, message: err.message, details: err.details },

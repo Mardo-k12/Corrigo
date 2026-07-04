@@ -1,19 +1,21 @@
 export default {
-  preset: "ts-jest",
   testEnvironment: "node",
   roots: ["<rootDir>/src"],
   testMatch: ["**/__tests__/**/*.test.ts", "**/?(*.)+(spec|test).ts"],
   moduleFileExtensions: ["ts", "js", "json"],
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   extensionsToTreatAsEsm: [".ts"],
-  globals: {
-    "ts-jest": {
-      useESM: true,
-      tsconfig: {
-        module: "esnext",
-        esModuleInterop: true,
+  transform: {
+    "^.+\\.ts$": [
+      "ts-jest",
+      {
+        useESM: true,
+        tsconfig: {
+          module: "esnext",
+          esModuleInterop: true,
+        },
       },
-    },
+    ],
   },
   collectCoverageFrom: [
     "src/**/*.ts",
@@ -32,7 +34,5 @@ export default {
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
   },
-  transformIgnorePatterns: [
-    "node_modules/(?!(sharp|p-limit|p-retry)/)",
-  ],
+  transformIgnorePatterns: ["node_modules/(?!(sharp|p-limit|p-retry)/)"],
 };

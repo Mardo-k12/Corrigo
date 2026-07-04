@@ -2,23 +2,24 @@ import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 
-// Load environment variables from .env.local
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const envPath = path.join(__dirname, "..", ".env.local");
-dotenv.config({ path: envPath });
+const projectRoot = path.join(__dirname, "..");
+const workspaceRoot = path.join(projectRoot, "..", "..");
 
-import app from "./app";
-import { logger } from "./lib/logger";
-
-const rawPort = process.env["PORT"];
-
-if (!rawPort) {
-  throw new Error(
-    "PORT environment variable is required but was not provided.",
-  );
+for (const envPath of [
+  path.join(workspaceRoot, ".env.local"),
+  path.join(workspaceRoot, ".env"),
+  path.join(projectRoot, ".env.local"),
+  path.join(projectRoot, ".env"),
+]) {
+  dotenv.config({ path: envPath, override: false });
 }
 
+const { default: app } = await import("./app");
+const { logger } = await import("./lib/logger");
+
+const rawPort = process.env["PORT"] ?? process.env["API_PORT"] ?? "5001";
 const port = Number(rawPort);
 
 if (Number.isNaN(port) || port <= 0) {
