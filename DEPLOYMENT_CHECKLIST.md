@@ -2,6 +2,8 @@
 
 > Historical checklist note: this file contains legacy readiness claims. Use [PRODUCTION_READY.md](PRODUCTION_READY.md) and [TECHNICAL_AUDIT_AND_REFACTOR_PLAN.md](TECHNICAL_AUDIT_AND_REFACTOR_PLAN.md) as the current source of truth.
 
+> If your local clone or deployment secrets predate the 2026-07-04 repository history rewrite, complete [SECRET_ROTATION_AND_RECOVERY.md](SECRET_ROTATION_AND_RECOVERY.md) before any deployment.
+
 ## Pre-Deployment Verification
 
 ### 1. Code Quality ✅

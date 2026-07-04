@@ -13,6 +13,7 @@
 | **Get started quickly** | [quick-start.sh](quick-start.sh) or [quick-start.bat](quick-start.bat) | 5 min |
 | **Understand the project** | [README.md](README.md) | 10 min |
 | **Set up development environment** | [SETUP.md](SETUP.md) | 30 min |
+| **Rotate secrets after history rewrite** | [SECRET_ROTATION_AND_RECOVERY.md](SECRET_ROTATION_AND_RECOVERY.md) | 15 min |
 | **Write tests** | [E2E_TESTING_GUIDE.md](E2E_TESTING_GUIDE.md) | 20 min |
 | **Understand the architecture** | [ARCHITECTURE.md](ARCHITECTURE.md) | 20 min |
 | **See API examples** | [API_EXAMPLES.md](API_EXAMPLES.md) | 15 min |
@@ -26,6 +27,7 @@
 | Phase | Document | Check |
 |-------|----------|-------|
 | **Pre-Deployment** | [DEPLOYMENT_CHECKLIST.md](DEPLOYMENT_CHECKLIST.md) | ✅ |
+| **Secret rotation / repo recovery** | [SECRET_ROTATION_AND_RECOVERY.md](SECRET_ROTATION_AND_RECOVERY.md) | ✅ |
 | **Production readiness status** | [PRODUCTION_READY.md](PRODUCTION_READY.md) | ✅ |
 | **Testing Setup** | [E2E_TESTING_GUIDE.md](E2E_TESTING_GUIDE.md) | ✅ |
 | **Post-Deployment** | [DEPLOYMENT_CHECKLIST.md](DEPLOYMENT_CHECKLIST.md) | ✅ |
@@ -95,29 +97,34 @@
    - Deployment steps
    - Post-deployment verification
    - Rollback procedures
+
+9. SECRET_ROTATION_AND_RECOVERY.md ← Post-incident operations
+   - Secret rotation order
+   - Team re-clone procedure
+   - Post-rewrite verification
 ```
 
 ### Project Reports (Reference)
 ```
-9. FINAL_REPORT.md            ← Overview NEW ⭐
+10. FINAL_REPORT.md            ← Overview NEW ⭐
    - Achievement summary
    - Test results
    - Performance metrics
    - Grade assessment
    
-10. PRODUCTION_READY.md       ← Readiness NEW ⭐
+11. PRODUCTION_READY.md       ← Readiness NEW ⭐
     - Feature checklist
     - Security features
     - Performance targets
     - Support info
     
-11. SESSION_SUMMARY.md        ← Implementation NEW ⭐
+12. SESSION_SUMMARY.md        ← Implementation NEW ⭐
     - Deliverables
     - Files created/modified
     - Test results
     - Quick start
     
-12. COMPLETION_REPORT.md      ← Details NEW ⭐
+13. COMPLETION_REPORT.md      ← Details NEW ⭐
     - Phase-by-phase breakdown
     - Project statistics
     - Final achievement
@@ -144,10 +151,11 @@
 ### Scenario 3: Deploying to Production
 1. Check [DEPLOYMENT_CHECKLIST.md](DEPLOYMENT_CHECKLIST.md)
 2. Review [PRODUCTION_READY.md](PRODUCTION_READY.md)
-3. Configure environment from [SETUP.md](SETUP.md)
-4. Follow deployment steps
-5. Monitor using [E2E_TESTING_GUIDE.md](E2E_TESTING_GUIDE.md#datadog-monitoring)
-6. Success! 🎉
+3. If your clone predates 2026-07-04, complete [SECRET_ROTATION_AND_RECOVERY.md](SECRET_ROTATION_AND_RECOVERY.md)
+4. Configure environment from [SETUP.md](SETUP.md)
+5. Follow deployment steps
+6. Monitor using [E2E_TESTING_GUIDE.md](E2E_TESTING_GUIDE.md#datadog-monitoring)
+7. Success! 🎉
 
 ### Scenario 4: Fixing a Bug
 1. Check [TROUBLESHOOTING.md](TROUBLESHOOTING.md)

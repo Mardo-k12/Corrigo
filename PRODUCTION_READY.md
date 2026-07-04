@@ -16,12 +16,14 @@ This document now reflects the verified state of the repository instead of a per
 
 ### Not yet fully production-ready
 
-- Secret-bearing local files were still tracked and require full git cleanup and secret rotation where applicable.
+- Published git history has been sanitized, but every potentially exposed secret still requires rotation before production use.
 - OpenAPI documentation still lags behind the implemented backend surface.
 - The mobile app still keeps only session state locally, but now relies on the backend as the primary source for business data.
 - Some historical reporting documents in the repository still contain outdated `10/10` and `production-ready` claims.
 
 For the detailed remediation log and roadmap, see [TECHNICAL_AUDIT_AND_REFACTOR_PLAN.md](./TECHNICAL_AUDIT_AND_REFACTOR_PLAN.md).
+
+For the required post-incident operational steps, see [SECRET_ROTATION_AND_RECOVERY.md](./SECRET_ROTATION_AND_RECOVERY.md).
 
 ---
 
@@ -34,7 +36,7 @@ For the detailed remediation log and roadmap, see [TECHNICAL_AUDIT_AND_REFACTOR_
 | **Architecture** | Good baseline | Monorepo aligned on a shared education domain |
 | **Code Quality** | Verified | TypeScript + ESLint + Prettier on active slices |
 | **Testing** | Partial but green | API unit tests passing; broader coverage still needed |
-| **Security** | In progress | Middleware hardened, secret hygiene cleanup still required |
+| **Security** | In progress | Middleware hardened, history sanitized, secret rotation still required |
 | **Performance** | Partial | Compression and rate limiting present |
 | **Monitoring** | Partial | Sentry/DataDog scaffolding present, needs deployment verification |
 | **Documentation** | In correction | Core setup docs improved, legacy claims remain to normalize |
